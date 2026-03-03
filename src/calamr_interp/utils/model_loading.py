@@ -83,6 +83,85 @@ MODEL_REGISTRY = {
             "pooling": "add",
         },
     },
+    "GraphSAGE": {
+        "class": "graph_sage.GraphSAGE",
+        "defaults": {
+            "input_dim": 771,
+            "hidden_dim": 256,
+            "num_layers": 3,
+            "dropout": 0.2,
+            "aggregator": "mean",
+            "pooling": "attention",
+        },
+    },
+    "GatedGNN": {
+        "class": "gated_gnn.GatedGNN",
+        "defaults": {
+            "input_dim": 771,
+            "hidden_dim": 256,
+            "num_layers": 5,
+            "dropout": 0.2,
+            "pooling": "attention",
+        },
+    },
+    "PNA": {
+        "class": "pna.PNA",
+        "defaults": {
+            "input_dim": 771,
+            "hidden_dim": 256,
+            "num_layers": 4,
+            "edge_dim": 4,
+            "dropout": 0.2,
+            "pooling": "both",
+        },
+    },
+    "APPNP": {
+        "class": "appnp.APPNP",
+        "defaults": {
+            "input_dim": 771,
+            "hidden_dim": 256,
+            "num_layers": 2,
+            "K": 10,
+            "alpha": 0.1,
+            "dropout": 0.2,
+            "pooling": "mean",
+        },
+    },
+    "GCN2": {
+        "class": "gcn2.GCN2",
+        "defaults": {
+            "input_dim": 771,
+            "hidden_dim": 256,
+            "num_layers": 8,
+            "alpha": 0.1,
+            "theta": 0.5,
+            "dropout": 0.2,
+            "shared_weights": False,
+            "pooling": "mean",
+        },
+    },
+    "DeeperGCN": {
+        "class": "deeper_gcn.DeeperGCN",
+        "defaults": {
+            "input_dim": 771,
+            "hidden_dim": 256,
+            "num_layers": 7,
+            "dropout": 0.2,
+            "aggr": "softmax",
+            "pooling": "mean",
+        },
+    },
+    "GraphSAINT": {
+        "class": "graph_saint.GraphSAINT",
+        "defaults": {
+            "input_dim": 771,
+            "hidden_dim": 256,
+            "num_layers": 3,
+            "dropout": 0.2,
+            "normalize": True,
+            "pooling": "mean",
+        },
+    },
 }
 
 CALAMR_PYG_ROOT = Path(__file__).resolve().parents[4] / "calamr_pyg"
