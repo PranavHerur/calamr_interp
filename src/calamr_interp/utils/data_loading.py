@@ -7,7 +7,14 @@ import torch
 from torch.utils.data import Subset
 from torch_geometric.data import Data
 
-DEFAULT_DATA_DIR = Path(__file__).resolve().parents[4] / "calamr" / "calamr-master" / "medhallu" / "v8" / "labeled"
+DEFAULT_DATA_DIR = (
+    Path(__file__).resolve().parents[4]
+    / "calamr"
+    / "calamr-master"
+    / "medhallu"
+    / "v8"
+    / "labeled"
+)
 
 
 def load_dataset(path: Optional[str] = None) -> List[Data]:
@@ -23,9 +30,12 @@ def load_dataset(path: Optional[str] = None) -> List[Data]:
     if not path.exists():
         raise FileNotFoundError(f"Data directory not found: {path}")
 
-    data_files = sorted(path.glob("*.pt"))
-    if not data_files:
-        raise ValueError(f"No .pt files found in {path}")
+    # Find all .pt files in the directory
+    data_files = sorted(list(path.glob("*.pt")))
+
+    # If no files in immediate directory, try recursive search
+    if len(data_files) == 0:
+        data_files = sorted(list(path.rglob("*.pt")))
 
     all_data = []
     for f in data_files:
